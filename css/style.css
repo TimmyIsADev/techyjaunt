@@ -735,6 +735,11 @@ a:hover {
     padding: 30px;
   }
 }
+@media(max-width:768px){
+  .team-member{
+    width:400px;
+  }
+}
 .team-bg {
   position: absolute;
   left: 0;
@@ -1242,4 +1247,19 @@ textarea.form-control {
 
 .team-member{
   border-radius: 8px;
+}
+
+.marketplace img{
+  border-radius: 8px;
+  transition: 0.8s;
+}
+
+.marketplace img:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.marketplace i{
+  color:purple;
+  margin:0 1px;
 }
