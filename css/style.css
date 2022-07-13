@@ -1263,3 +1263,7 @@ textarea.form-control {
   color:purple;
   margin:0 1px;
 }
+
+section.contact{
+  margin-top:5rem !important;
+}
