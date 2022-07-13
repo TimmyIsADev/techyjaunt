@@ -1230,3 +1230,7 @@ textarea.form-control {
 .seo-image img:hover{
   transform:scale(0.95);
 }
+
+.team-member{
+  border-radius: 8px;
+}
