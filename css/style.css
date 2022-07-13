@@ -1216,3 +1216,18 @@ textarea.form-control {
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+.team-member img{
+  border-radius: 8px;
+  width: 25%;
+  margin:0;
+}
+
+.seo-image img{
+  border-radius:8px;
+  transition: 0.8s;
+}
+
+.seo-image img:hover{
+  transform:scale(0.95);
+}
