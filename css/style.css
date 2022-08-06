@@ -1271,3 +1271,11 @@ section.contact{
 .contact li{
   font-size:2rem;
 }
+
+#launchpad img{
+  transition: 0.8s;
+}
+
+#launchpad img:hover{
+  transform:scale(1.1);
+}
