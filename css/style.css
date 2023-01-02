@@ -24,7 +24,8 @@ body {
   font-size: 17px;
 }
 
-p, .paragraph {
+p,
+.paragraph {
   font-weight: 300;
   color: #4d546f;
   font-size: 17px;
@@ -32,34 +33,51 @@ p, .paragraph {
   font-family: "Poppins", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   color: #091337;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   line-height: 1.5;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: 56px;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 43px;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-size: 37px;
 }
 
-h4, .h4 {
+h4,
+.h4 {
   font-size: 22px;
 }
 
-h5, .h5 {
+h5,
+.h5 {
   font-size: 16px;
 }
 
-h6, .h6 {
+h6,
+.h6 {
   font-size: 13px;
 }
 
@@ -84,28 +102,52 @@ h6, .h6 {
 }
 
 .btn-primary {
-  background-image: linear-gradient(25deg, rgb(10,158,248) 0%, rgb(78,103,245) 95%);
+  background-image: linear-gradient(
+    25deg,
+    rgb(10, 158, 248) 0%,
+    rgb(78, 103, 245) 95%
+  );
   color: #fff;
   transition: background 1s ease-out;
 }
 .btn-primary:active {
-  background: linear-gradient(25deg, rgb(10,158,248) 0%, rgb(78,103,245) 95%) !important;
+  background: linear-gradient(
+    25deg,
+    rgb(10, 158, 248) 0%,
+    rgb(78, 103, 245) 95%
+  ) !important;
 }
 .btn-primary:hover {
-  background: linear-gradient(205deg, rgb(10,158,248) 0%, rgb(78,103,245) 95%);
+  background: linear-gradient(
+    205deg,
+    rgb(10, 158, 248) 0%,
+    rgb(78, 103, 245) 95%
+  );
   color: #091337;
 }
 
 .btn-secondary {
-  background-image: linear-gradient(6deg, rgb(10,158,248) 0%, rgb(35, 227, 238) 100%);
+  background-image: linear-gradient(
+    6deg,
+    rgb(10, 158, 248) 0%,
+    rgb(35, 227, 238) 100%
+  );
   background-color: transparent;
   color: #fff;
 }
 .btn-secondary:active {
-  background: linear-gradient(6deg, rgb(10,158,248) 0%, rgb(35, 227, 238) 100%) !important;
+  background: linear-gradient(
+    6deg,
+    rgb(10, 158, 248) 0%,
+    rgb(35, 227, 238) 100%
+  ) !important;
 }
 .btn-secondary:hover {
-  background: linear-gradient(186deg, rgb(10,158,248) 0%, rgb(35, 227, 238) 100%);
+  background: linear-gradient(
+    186deg,
+    rgb(10, 158, 248) 0%,
+    rgb(35, 227, 238) 100%
+  );
   color: #091337;
 }
 
@@ -404,8 +446,8 @@ a:hover {
   }
 }
 
-@media (max-width:768px) {
-  .navbar-collapse{
+@media (max-width: 768px) {
+  .navbar-collapse {
     background-color: #fff;
     padding-bottom: 20px;
     box-shadow: 0px 10px 20px 0px rgba(0, 141, 236, 0.1);
@@ -735,9 +777,9 @@ a:hover {
     padding: 30px;
   }
 }
-@media(max-width:768px){
-  .team-member{
-    width:400px;
+@media (max-width: 768px) {
+  .team-member {
+    width: 400px;
   }
 }
 .team-bg {
@@ -817,13 +859,25 @@ a:hover {
   box-shadow: 0px 59px 43px 0px rgba(216, 233, 243, 0.3);
 }
 .pricing-table.table-1 {
-  background-image: linear-gradient(59deg, rgb(213, 252, 113) 0%, rgb(100, 254, 171) 95%);
+  background-image: linear-gradient(
+    59deg,
+    rgb(213, 252, 113) 0%,
+    rgb(100, 254, 171) 95%
+  );
 }
 .pricing-table.table-2 {
-  background-image: linear-gradient(59deg, rgb(6, 255, 223) 0%, rgb(66, 219, 239) 95%);
+  background-image: linear-gradient(
+    59deg,
+    rgb(6, 255, 223) 0%,
+    rgb(66, 219, 239) 95%
+  );
 }
 .pricing-table.table-3 {
-  background-image: linear-gradient(59deg, rgb(11, 252, 224) 0%, rgb(197, 253, 120) 95%);
+  background-image: linear-gradient(
+    59deg,
+    rgb(11, 252, 224) 0%,
+    rgb(197, 253, 120) 95%
+  );
 }
 .pricing-btn {
   font-size: 25px;
@@ -891,7 +945,7 @@ a:hover {
 .newsletter-btn {
   position: absolute;
   height: 100%;
-  background: rgb(78,103,245) ;
+  background: rgb(78, 103, 245);
   top: 0;
   right: 0;
   border-radius: 0 5px 5px 0;
@@ -1231,51 +1285,102 @@ textarea.form-control {
 }
 /*# sourceMappingURL=style.css.map */
 
-.team-member img{
+.team-member img {
   border-radius: 8px;
-  margin:0;
+  margin: 0;
 }
 
-.seo-image img{
-  border-radius:8px;
-  transition: 0.8s;
-}
-
-.seo-image img:hover{
-  transform:scale(0.95);
-}
-
-.team-member{
-  border-radius: 8px;
-}
-
-.marketplace img{
+.seo-image img {
   border-radius: 8px;
   transition: 0.8s;
 }
 
-.marketplace img:hover{
+.seo-image img:hover {
+  transform: scale(0.95);
+}
+
+.team-member {
+  border-radius: 8px;
+}
+
+.marketplace img {
+  border-radius: 8px;
+  transition: 0.8s;
+}
+
+.marketplace img:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
 
-.marketplace i{
-  color:purple;
-  margin:0 1px;
+.marketplace i {
+  color: purple;
+  margin: 0 1px;
 }
 
-section.contact{
-  margin-top:15rem !important;
+section.contact {
+  margin-top: 15rem !important;
 }
 
-.contact li{
-  font-size:2rem;
+.contact li {
+  font-size: 2rem;
 }
 
-#launchpad img{
+#launchpad img {
   transition: 0.8s;
 }
 
-#launchpad img:hover{
-  transform:scale(1.1);
+#launchpad img:hover {
+  transform: scale(1.1);
+}
+
+.img_grid {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.img_list {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 5px;
+  transition: 0.8s;
+}
+
+.img_list:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .img_grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    justify-items: center;
+  }
+}
+
+@media (min-width: 650px) {
+  .img_grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    justify-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .img_grid {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+  }
 }
