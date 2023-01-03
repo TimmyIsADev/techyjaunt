@@ -1384,3 +1384,46 @@ section.contact {
     width: 100%;
   }
 }
+
+.team_member {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team_member img {
+  border-radius: 8px;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.bio_text {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.img_member {
+  width: auto;
+  height: 365px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1024px) {
+  .team_member {
+    flex-direction: column;
+  }
+  .bio_text {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  column-gap: 1rem;
+  font-size: 18px;
+}
