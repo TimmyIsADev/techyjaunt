@@ -1403,10 +1403,6 @@ section.contact {
   transition: 0.8s;
 }
 
-.team_member img:hover {
-  transform: scale(1.05);
-}
-
 .reverse {
   flex-direction: row-reverse;
 }
