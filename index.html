@@ -649,7 +649,7 @@
       </div>
     </div>
 
-    <script>
+    <script defer>
       var email = document.getElementById('emailAddress');
       var firstName = document.getElementById('firstName');
       var status = document.getElementById('status');
@@ -663,7 +663,7 @@
         const audienceId = '732326f5a9';
 
         // Set the request URL
-        const url = `https://us1.api.mailchimp.com/3.0/lists/${audienceId}/members`;
+        const url = `https://us21.api.mailchimp.com/3.0/lists/${audienceId}/members`;
 
         // Set the request headers
         const headers = {
@@ -691,12 +691,18 @@
         // Print the response status code
         console.log(response.status);
         if (response.status === 200) {
-          status.innerHTML = 'You are successfully subscribed'
+          status.innerHTML = 'You are successfully subscribed';
+          setTimeout(() => {
+            window.location.href = 'https://api.whatsapp.com/send?phone=2347064517696&text=Join%20the%20Techy%20Jaunt%20Community'
+          })
+        } else {
+          status.innerHTML = 'Subscription Failed';
         }
       }
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        console.log(email.value, firstName.value)
         await addSubscriber(email.value, firstName.value);
       })
 
