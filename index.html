@@ -633,16 +633,17 @@
           <p id="msg"></p>
         </div>
         <div class="col-lg-8 col-sm-10 col-12 mx-auto">
-          <form action="" method="post" id="lemlist-embed-sign-up-form" name="lemlist-embed-sign-up-form"
-            class="validate" target="_blank">
+          <form action="" method="post" id="mailchimp" name="lemlist-embed-sign-up-form" class="validate"
+            target="_blank">
             <div class="input-wrapper position-relative">
-              <input type="text" class="newsletter-form" name="firstName" id="lemlist-firstName"
-                placeholder="First Name" required aria-required="true" />
-              <input type="email" name="email" class="newsletter-form" id="lemlist-email" required aria-required="true"
+              <input type="text" class="newsletter-form" name="firstName" id="firstName" placeholder="First Name"
+                required aria-required="true" />
+              <input type="email" name="email" class="newsletter-form" id="emailAddress" required aria-required="true"
                 placeholder="Email Address" />
               <button type="submit" value="Subscribe" class="btn newsletter-btn">
                 Join
               </button>
+              <p id="status"></p>
             </div>
           </form>
         </div>
@@ -652,13 +653,15 @@
     <script>
       var email = document.getElementById('email');
       var firstName = document.getElementById('firstName');
+      var status = document.getElementById('status');
+      var form = document.getElementById('mailchimp')
 
       async function addSubscriber(email, firstName) {
         // Replace YOUR_API_KEY with your actual API key
         const apiKey = 'cc76d701880736a55899c33b272f08a4-us21';
 
         // Replace YOUR_AUDIENCE_ID with the ID of the audience you want to add the subscriber to
-        const audienceId = 'YOUR_AUDIENCE_ID';
+        const audienceId = '732326f5a9';
 
         // Set the request URL
         const url = `https://us1.api.mailchimp.com/3.0/lists/${audienceId}/members`;
@@ -687,7 +690,17 @@
 
         // Print the response status code
         console.log(response.status);
+        if (response.status === 200) {
+          status.innerHTML = 'You are successfully subscribed'
+        }
       }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        await addSubscriber(email, firstName);
+      })
+
+
 
     </script>
 
