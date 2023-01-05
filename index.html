@@ -650,7 +650,7 @@
     </div>
 
     <script>
-      var email = document.getElementById('email');
+      var email = document.getElementById('emailAddress');
       var firstName = document.getElementById('firstName');
       var status = document.getElementById('status');
       var form = document.getElementById('mailchimp')
@@ -673,10 +673,10 @@
 
         // Set the request payload
         const data = {
-          email_address: email.value,
+          email_address: email,
           status: 'subscribed',
           merge_fields: {
-            FNAME: firstName.value,
+            FNAME: firstName,
           },
         };
 
@@ -684,7 +684,7 @@
         const response = await fetch(url, {
           method: 'POST',
           headers: headers,
-          mode:'no-cors',
+          mode: 'no-cors',
           body: JSON.stringify(data),
         });
 
@@ -697,7 +697,7 @@
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        await addSubscriber(email, firstName);
+        await addSubscriber(email.value, firstName.value);
       })
 
 
