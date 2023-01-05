@@ -66,9 +66,6 @@
     })(window, document, 'script', 'dataLayer', 'GTM-MCX88ZL');</script>
   <!-- End Google Tag Manager -->
 
-
-  <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
-
 </head>
 
 <body>
@@ -635,29 +632,63 @@
           <p class="mb-5">Join a community of over 2000+ Tech Enthusiasts for updates on the Tech Industry.</p>
           <p id="msg"></p>
         </div>
-        <div class="col-lg-8 col-sm-10 col-12 mx-auto" id="mc_embed_signup">
-          <form
-            action="https://techyjaunt.us21.list-manage.com/subscribe/post?u=ea6fe7be6a9eccbffa1fff51e&amp;id=732326f5a9&amp;f_id=0018cee1f0"
-            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
-            target="_blank" novalidate>
+        <div class="col-lg-8 col-sm-10 col-12 mx-auto">
+          <form action="" method="post" id="lemlist-embed-sign-up-form" name="lemlist-embed-sign-up-form"
+            class="validate" target="_blank">
             <div class="input-wrapper position-relative">
-              <input type="text" class="newsletter-form" name="firstName" id="mce-FNAME" placeholder="First Name"
-                required aria-required="true" />
-              <input type="email" name="email" class="newsletter-form" id="mce-EMAIL" required aria-required="true"
+              <input type="text" class="newsletter-form" name="firstName" id="lemlist-firstName"
+                placeholder="First Name" required aria-required="true" />
+              <input type="email" name="email" class="newsletter-form" id="lemlist-email" required aria-required="true"
                 placeholder="Email Address" />
               <button type="submit" value="Subscribe" class="btn newsletter-btn">
                 Join
               </button>
             </div>
-            <div id="mce-responses" class="clear foot text-center">
-              <div class="response" id="mce-error-response" style="display:none"></div>
-              <div class="response" id="mce-success-response" style="display:none"></div>
           </form>
         </div>
       </div>
     </div>
 
-    <script type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; }(jQuery)); var $mcj = jQuery.noConflict(true);
+    <script>
+      var email = document.getElementById('email');
+      var firstName = document.getElementById('firstName');
+
+      async function addSubscriber(email, firstName) {
+        // Replace YOUR_API_KEY with your actual API key
+        const apiKey = 'cc76d701880736a55899c33b272f08a4-us21';
+
+        // Replace YOUR_AUDIENCE_ID with the ID of the audience you want to add the subscriber to
+        const audienceId = 'YOUR_AUDIENCE_ID';
+
+        // Set the request URL
+        const url = `https://us1.api.mailchimp.com/3.0/lists/${audienceId}/members`;
+
+        // Set the request headers
+        const headers = {
+          'Content-Type': 'application/json',
+          'Authorization': `apikey ${apiKey}`,
+        };
+
+        // Set the request payload
+        const data = {
+          email_address: email,
+          status: 'subscribed',
+          merge_fields: {
+            FNAME: firstName,
+          },
+        };
+
+        // Make the POST request
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(data),
+        });
+
+        // Print the response status code
+        console.log(response.status);
+      }
+
     </script>
 
     <!-- background shapes -->
@@ -696,6 +727,10 @@
     <img class="newsletter-bg-shape right-left-animation" src="images/background-shape/seo-ball-1.png"
       alt="background-shape" />
   </section>
+
+
+  <script
+    id="mcjs">!function (c, h, i, m, p) { m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m, p) }(document, "script", "https://chimpstatic.com/mcjs-connected/js/users/ea6fe7be6a9eccbffa1fff51e/f2d4d7b620d1164157ab3c299.js");</script>
 
   <!-- footer -->
   <footer class="footer-section footer" style="background-image: url(images/backgrounds/footer-bg.png)">
