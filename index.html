@@ -684,7 +684,7 @@
         const response = await fetch(url, {
           method: 'POST',
           headers: headers,
-          mode:'cors',
+          mode:'no-cors',
           body: JSON.stringify(data),
         });
 
