@@ -656,11 +656,7 @@
       var form = document.getElementById('mailchimp')
 
       async function addSubscriber(email, firstName) {
-        // Replace YOUR_API_KEY with your actual API key
-        const apiKey = 'cc76d701880736a55899c33b272f08a4-us21';
-
-        // Replace YOUR_AUDIENCE_ID with the ID of the audience you want to add the subscriber to
-        const audienceId = '732326f5a9';
+        
 
         // Set the request URL
         const url = `https://us21.api.mailchimp.com/3.0/lists/${audienceId}/members`;
@@ -689,7 +685,7 @@
         });
 
         // Print the response status code
-        console.log(response.status);
+        console.log(response);
         if (response.status === 200) {
           status.innerHTML = 'You are successfully subscribed';
           setTimeout(() => {
