@@ -555,61 +555,24 @@
       var status = document.getElementById('status');
       var form = document.getElementById('mailchimp')
 
-      async function addSubscriber(email, firstName) {
-
-        // Replace YOUR_API_KEY with your actual API key
-        const apiKey = 'cc76d701880736a55899c33b272f08a4-us21';
-
-        // Replace YOUR_AUDIENCE_ID with the ID of the audience you want to add the subscriber to
-        const audienceId = '732326f5a9';
-
-
-        // Set the request URL
-        const url = `https://us21.api.mailchimp.com/3.0/lists/${audienceId}/members`;
-
-        // Set the request headers
-        const headers = {
-          'Content-Type': 'application/json',
-          'Authorization': `apikey ${apiKey}`,
-        };
-
-        // Set the request payload
-        const data = {
-          email_address: email,
-          status: 'subscribed',
-          merge_fields: {
-            FNAME: firstName,
-          },
-        };
-
-        // Make the POST request
-        const response = await fetch(url, {
+      async function subscribe(email, firstname) {
+        const response = fetch('/sub', {
           method: 'POST',
-          headers: headers,
-          mode: "cors",
-          body: JSON.stringify(data),
-        });
+          data: JSON.stringify({ emailAddress: email, firstName: firstname })
+        })
 
-        // Print the response status code
-        console.log(response);
         if (response.status === 200) {
-          status.innerHTML = 'You are successfully subscribed';
-          setTimeout(() => {
-            window.location.href = 'https://api.whatsapp.com/send?phone=2347064517696&text=Join%20the%20Techy%20Jaunt%20Community'
-          })
+          status.innerHTML = 'Subscription Successful'
+          window.location.href = 'https://api.whatsapp.com/send?phone=2347064517696&text=Join%20the%20Techy%20Jaunt%20Community'
         } else {
-          status.innerHTML = 'Subscription Failed';
+          status.innerHTML = 'Subscription Failed'
         }
       }
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log(email.value, firstName.value)
-        await addSubscriber(email.value, firstName.value);
+        await subscribe(email.value, firstName.value)
       })
-
-
-
     </script>
 
     <!-- background shapes -->
