@@ -556,10 +556,15 @@
       var form = document.getElementById('mailchimp')
 
       async function subscribe(email, firstname) {
+        const formData = new FormData();
+        formData.append('emailAddress', email.value)
+        formData.append('firstName', firstname.value)
+
         const response = fetch('/sub', {
           method: 'POST',
-          data: JSON.stringify({ emailAddress: email, firstName: firstname })
+          body: JSON.stringify({ emailAddress: email, firstName: firstname })
         })
+
 
         if (response.status === 200) {
           status.innerHTML = 'Subscription Successful'
@@ -571,7 +576,7 @@
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        await subscribe(email.value, firstName.value)
+        await subscribe(email, firstName)
       })
     </script>
 

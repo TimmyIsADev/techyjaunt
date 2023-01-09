@@ -2,8 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const client = require("@mailchimp/mailchimp_marketing");
+const port = process.env.PORT || 3001;
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 app.use("/", express.static("public"));
 
@@ -12,10 +16,12 @@ app.get("/test", async (req, res) => {
     message: "Hello",
   });
 });
+
 app.post("/sub", async (req, res) => {
+  console.log(req.body);
   const { emailAddress, firstName } = req.body;
   console.log(emailAddress, firstName);
-  console.log(req.body);
+
   //   console.log("Attempting Subscription 🧑...");
   //   if (emailAddress === "" || firstName === "") {
   //     return res.status(409).json({
@@ -54,6 +60,6 @@ app.post("/sub", async (req, res) => {
   //   await run();
 });
 
-app.listen(5000, () => {
-  console.log("Server started on Port 5000🚀");
+app.listen(port, () => {
+  console.log(`Server started on Port ${port}`);
 });
