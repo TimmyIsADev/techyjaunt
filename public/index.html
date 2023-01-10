@@ -542,36 +542,44 @@
               <button type="submit" value="Subscribe" class="btn newsletter-btn">
                 Join
               </button>
-              <p id="status"></p>
             </div>
+            <p id="status"></p>
           </form>
         </div>
       </div>
     </div>
 
-    <script defer>
+    <script>
       var email = document.getElementById('emailAddress');
       var firstName = document.getElementById('firstName');
       var status = document.getElementById('status');
       var form = document.getElementById('mailchimp')
 
       async function subscribe(email, firstname) {
-        const formData = new FormData();
-        formData.append('emailAddress', email.value)
-        formData.append('firstName', firstname.value)
-
-        const response = fetch('/sub', {
+        const response = await fetch('/sub', {
           method: 'POST',
-          body: JSON.stringify({ emailAddress: email, firstName: firstname })
-        })
-
-
-        if (response.status === 200) {
-          status.innerHTML = 'Subscription Successful'
-          window.location.href = 'https://api.whatsapp.com/send?phone=2347064517696&text=Join%20the%20Techy%20Jaunt%20Community'
-        } else {
-          status.innerHTML = 'Subscription Failed'
-        }
+          cors: 'no-cors',
+          body: JSON.stringify({
+            emailAddress: email.value,
+            firstName: firstName.value
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }).then((response) => response.json())
+          .then((data) => {
+            console.log('Data from Back End', data)
+            if (data.status === 'failed') {
+              window.alert('Subscription Failed 😥')
+            }
+            if (data.status === 'ok') {
+              window.alert('Subscription Successful😁')
+              window.location.href = 'https://api.whatsapp.com/send?phone=2347064517696&text=Join%20the%20Techy%20Jaunt%20Community'
+            }
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
 
       form.addEventListener('submit', async (e) => {
