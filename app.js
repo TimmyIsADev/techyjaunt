@@ -42,6 +42,7 @@ app.post("/sub", (req, res) => {
         },
       })
       .then((response) => {
+        console.log(response);
         if (response) {
           console.log("Subscription Successful😊");
           return res.status(200).json({
@@ -51,7 +52,8 @@ app.post("/sub", (req, res) => {
         }
       })
       .catch((error) => {
-        if (error.status) {
+        if (error.status === 400) {
+          console.log(error);
           console.log("Subscription Failed");
           return res.status(400).json({
             status: "failed",
