@@ -571,10 +571,10 @@
           .then((data) => {
             console.log('Data from Back End', data)
             if (data.status === 'failed') {
-              window.alert('Subscription Failed 😥')
+              window.alert("We're sorry😥, but there was an issue with your subscription. Please check the information you provided and try again or contact us for assistance. ")
             }
             if (data.status === 'ok') {
-              window.alert('Subscription Successful😁')
+              window.alert('Thank you for subscribing! You will now receive updates and news from us.😁')
               window.location.href = 'https://wa.link/c7stdh'
             }
           })
