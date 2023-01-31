@@ -540,7 +540,8 @@
                 required aria-required="true" />
               <input type="email" name="email" class="newsletter-form" id="emailAddress" required aria-required="true"
                 placeholder="Email Address" />
-              <button type="submit" value="Subscribe" class="btn newsletter-btn">
+              <button type="submit" value="Subscribe" data-toggle="modal" data-target="#loading"
+                class="btn newsletter-btn">
                 Join
               </button>
             </div>
@@ -550,44 +551,71 @@
       </div>
     </div>
 
-    <script>
-      var email = document.getElementById('emailAddress');
-      var firstName = document.getElementById('firstName');
-      var status = document.getElementById('status');
-      var form = document.getElementById('mailchimp')
+    <div class="modal" id="failed" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center text-error">Subscription Failed</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>We're sorry😥, but there was an issue with your subscription. Please check the information you provided
+              and try again or
+              contact us for assistance.!</p>
 
-      async function subscribe(email, firstname) {
-        const response = await fetch('/sub', {
-          method: 'POST',
-          cors: 'no-cors',
-          body: JSON.stringify({
-            emailAddress: email.value,
-            firstName: firstName.value
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }).then((response) => response.json())
-          .then((data) => {
-            console.log('Data from Back End', data)
-            if (data.status === 'failed') {
-              window.alert("We're sorry😥, but there was an issue with your subscription. Please check the information you provided and try again or contact us for assistance. ")
-            }
-            if (data.status === 'ok') {
-              window.alert('Thank you for subscribing! You will now receive updates and news from us.😁')
-              window.location.href = 'https://wa.link/c7stdh'
-            }
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="close-processing" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        await subscribe(email, firstName)
-      })
-    </script>
+    <div class="modal" id="loading" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center">Subscribing...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Your subscription to TechyJaunt is processing... Please Wait!</p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="close-processing" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="modal" id="successful" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-center">Subscription Successful</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Thank you for subscribing! You will now receive updates and news from us.😁</p>
+            <p>You will be redirected shortly...</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="close-processing" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
     <!-- background shapes -->
     <img class="newsletter-bg-shape left-right-animation" src="images/background-shape/seo-ball-2.png"
@@ -687,6 +715,51 @@
   <script src="plugins/aos/aos.js"></script>
   <!-- Main Script -->
   <script src="js/script.js"></script>
+
+  <script>
+    var email = document.getElementById('emailAddress');
+    var firstName = document.getElementById('firstName');
+    var status = document.getElementById('status');
+    var form = document.getElementById('mailchimp');
+
+    async function subscribe(email, firstname) {
+      $('#loading').modal('show');
+      const response = await fetch('/sub', {
+        method: 'POST',
+        cors: 'no-cors',
+        body: JSON.stringify({
+          emailAddress: email.value,
+          firstName: firstName.value
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => response.json())
+        .then((data) => {
+          console.log('Data from Back End', data)
+          if (data.status === 'failed') {
+            $('#loading').modal('hide');
+            $('#failed').modal('show');
+          }
+          if (data.status === 'ok') {
+            $('#loading').modal('hide');
+            $('#successful').modal('show')
+            setTimeout(() => {
+              window.location.href = 'https://wa.link/c7stdh'
+            }, 3000)
+            // window.alert('Thank you for subscribing! You will now receive updates and news from us.😁')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await subscribe(email, firstName)
+    })
+  </script>
 </body>
 
 </html>
