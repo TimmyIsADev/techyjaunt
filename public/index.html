@@ -100,16 +100,17 @@
               <a class="nav-link page-scroll" href="#mission">Our Mission</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link page-scroll" href="#launchpad">Launchpad</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link page-scroll" href="#team">Team</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="https://blog.techyjaunt.com">Blog</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="https://blog.techyjaunt.com">Contact Us</a>
+            </li>
           </ul>
-          <a href="#contact" class="btn btn-primary page-scroll ml-lg-3 primary-shadow">Contact</a>
+          <a href="https://launchpad.techyjaunt.com" class="btn btn-primary page-scroll ml-lg-3 primary-shadow">Launch
+            Pad</a>
         </div>
       </nav>
     </div>
@@ -562,6 +563,8 @@
             <div class="input-wrapper position-relative">
               <input type="text" class="newsletter-form" name="firstName" id="firstName" placeholder="First Name"
                 required aria-required="true" />
+              <input type="text" class="newsletter-form" name="lastName" id="lastName" placeholder="Last Name" required
+                aria-required="true" />
               <input type="email" name="email" class="newsletter-form" id="emailAddress" required aria-required="true"
                 placeholder="Email Address" />
               <button type="submit" value="Subscribe" data-toggle="modal" data-target="#loading"
@@ -742,17 +745,24 @@
   <script>
     var email = document.getElementById('emailAddress');
     var firstName = document.getElementById('firstName');
+    var lastName = document.getElementById('lastName');
     var status = document.getElementById('status');
     var form = document.getElementById('mailchimp');
 
+
+
     async function subscribe(email, firstname) {
+      console.log("Attempting Subscription 🧑...");
+      let listId = "56fcc9f4-c91c-11ed-a5a5-197bd1869247";
+
       $('#loading').modal('show');
-      const response = await fetch('/sub', {
+      const response = await fetch(`/sub`, {
         method: 'POST',
-        cors: 'no-cors',
+        cors: 'cors',
         body: JSON.stringify({
           emailAddress: email.value,
-          firstName: firstName.value
+          firstName: firstName.value,
+          lastName: lastName.value
         }),
         headers: {
           'Content-Type': 'application/json',
