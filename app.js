@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const client = require("@mailchimp/mailchimp_marketing");
 const port = process.env.PORT || 3001;
+const fetch = require("node-fetch");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -14,56 +14,59 @@ app.get("/test", async (req, res) => {
   });
 });
 
-app.post("/sub", (req, res) => {
-  console.log(req.body);
-  const { emailAddress, firstName } = req.body;
-  console.log(emailAddress, firstName);
+app.post("/sub", async (req, res) => {
+  let listId = "56fcc9f4-c91c-11ed-a5a5-197bd1869247";
+  let api_key = "d84e2d1c-c986-498c-a914-b7e895cb8849";
+  const { emailAddress, firstName, lastName } = req.body;
 
   console.log("Attempting Subscription 🧑...");
-  if (emailAddress === "" || firstName === "") {
-    return res.status(409).json({
+  if (emailAddress === "" || firstName === "" || lastName === "") {
+    return res.status(400).json({
       status: "failed",
       message: "Bad Request",
     });
   }
 
-  client.setConfig({
-    apiKey: "cc76d701880736a55899c33b272f08a4-us21",
-    server: "us21",
-  });
-
-  const run = async () => {
-    const response = await client.lists
-      .addListMember("732326f5a9", {
-        email_address: emailAddress,
-        status: "subscribed",
-        merge_fields: {
-          FNAME: firstName,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        if (response) {
-          console.log("Subscription Successful😊");
-          return res.status(200).json({
-            status: "ok",
-            message: "Subscription Successful",
-          });
-        }
-      })
-      .catch((error) => {
-        if (error.status === 400) {
-          console.log(error);
-          console.log("Subscription Failed");
-          return res.status(400).json({
-            status: "failed",
-            message: "Subscription Failed",
-          });
-        }
+  await fetch(`https://emailoctopus.com/api/1.6/lists/${listId}/contacts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      api_key,
+      email_address: emailAddress,
+      fields: {
+        EmailAddress: emailAddress,
+        FirstName: firstName,
+        LastName: lastName,
+      },
+      tags: ["VIP"],
+      status: "SUBSCRIBED",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.status === "SUBSCRIBED") {
+        return res.status(200).json({
+          status: "ok",
+        });
+      }
+      if (data.error === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
+        return res.status(500).json({
+          status: "failed",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json({
+        status: "failed",
       });
-  };
-
-  run();
+    });
 });
 
 app.listen(port, () => {
