@@ -272,7 +272,6 @@
               name="course"
               value="UI/UX Design"
               required
-              checked
             />
             <label class="form-check-label" for="uiUxDesign"
               >UI/UX Design</label
@@ -426,8 +425,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>Thank you for Signing Up! You will now receive updates and news from us.😁</p>
-            <p>You will be redirected to the community shortly...</p>
+            <p>Thank you for Signing Up!😁 <br /> We sent you an email confirming your registration.</p>
+            <p>You will be redirected to the WhatsApp community shortly...</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" id="close-processing" data-dismiss="modal">Close</button>
@@ -609,15 +608,16 @@
       const firstName = document.querySelector('#firstName');
       const lastName = document.querySelector('#lastName');
       const email = document.querySelector('#email');
-      const course = document.querySelector('input[name="course"]:checked');
       const reason = document.querySelector('#career');
       const form = document.querySelector('#signup');
 
-      console.log(form)
       
       async function subscribe() {
         console.log("Attempting Subscription 🧑...");
         document.getElementById("hidden-button").click();
+        
+      const course = document.querySelector('input[name="course"]:checked');
+      console.log(course)
 
         $("#loading").modal("show");
         const response = await fetch(`/launchpad/signup`, {
