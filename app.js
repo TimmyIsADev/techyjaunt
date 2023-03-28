@@ -7,6 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", express.static("public"));
+app.use("/launchpad", express.static("public/launchpad.html"));
 
 app.get("/test", async (req, res) => {
   res.status(200).json({
