@@ -55,7 +55,7 @@ app.post("/sub", async (req, res) => {
           status: "ok",
         });
       }
-      if (data.error === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
+      if (data.error.code === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
         return res.status(500).json({
           status: "failed",
         });
