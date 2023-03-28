@@ -49,7 +49,7 @@ app.post("/launchpad/signup", async (req, res) => {
         SelectedCourse:courseOfStudy,
         ReasonOfCareerInTech:reasonForJoin
       },
-      tags: ["VIP"],
+      tags: ["STUDENT"],
       status: "SUBSCRIBED",
     }),
   })
