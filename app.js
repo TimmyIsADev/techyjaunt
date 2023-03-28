@@ -43,9 +43,6 @@ app.post("/sub", async (req, res) => {
       },
       tags: ["VIP"],
       status: "SUBSCRIBED",
-      headers: {
-        "Content-Type": "application/json",
-      },
     }),
   })
     .then((response) => response.json())
