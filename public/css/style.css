@@ -1442,3 +1442,7 @@ section.contact {
   font-size: 18px;
   color: rgb(10, 158, 248) 0%;
 }
+
+.testimonials p{
+  font-style: italic;
+}
