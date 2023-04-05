@@ -17,26 +17,22 @@ app.get("/test", async (req, res) => {
 });
 
 app.post("/launchpad/signup", async (req, res) => {
-  const { emailAddress, firstName, lastName, courseOfStudy, reasonForJoin } = req.body;
+  const { emailAddress, firstName, lastName, courseOfStudy, priorKnowledge, howHeard } = req.body;
   let launchpadListId = "af8bb782-cd32-11ed-92c6-4745dc69f879";
 
   if (
     emailAddress === "" ||
     firstName === "" ||
     lastName === "" ||
-    courseOfStudy === "" ||
-    reasonForJoin === ""
+    priorKnowledge === "" ||
+    howHeard === ""
   ) {
     return res.status(500).json({
       status: "failed",
     });
   }
 
-  function sanitizeText(text) {
-    return text.replace(/[\r\n]+/gm, ' ');
-  }
-
-  console.log("Attempting Sign Up User🧑...",{emailAddress, firstName, lastName, courseOfStudy, reasonForJoin});
+  console.log("Attempting Sign Up User🧑...",{ emailAddress, firstName, lastName, courseOfStudy, priorKnowledge, howHeard });
 
   await fetch(`https://emailoctopus.com/api/1.6/lists/${launchpadListId}/contacts`, {
     method: "POST",
@@ -51,7 +47,8 @@ app.post("/launchpad/signup", async (req, res) => {
         FirstName: firstName,
         LastName: lastName,
         SelectedCourse:courseOfStudy,
-        ReasonOfCareerInTech: sanitizeText(reasonForJoin)
+        PriorKnowledge: priorKnowledge,
+        HowYouHeard: howHeard
       },
       tags: ["STUDENT"],
       status: "SUBSCRIBED",
@@ -75,7 +72,7 @@ app.post("/launchpad/signup", async (req, res) => {
         });
       }
       if (data.error.code === "INVALID_PARAMETERS"){
-        console.log('Invalid Parameters', {emailAddress, firstName, lastName, courseOfStudy, reasonForJoin});
+        console.log('Invalid Parameters ❌', { emailAddress, firstName, lastName, courseOfStudy, priorKnowledge, howHeard });
         
         return res.status(500).json({
           status: "failed",

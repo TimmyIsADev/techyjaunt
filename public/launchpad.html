@@ -253,9 +253,51 @@
       </div>
 
       <div class="form-group">
-        <label for="career">Why do you want to start a career in tech?</label>
-        <textarea class="form-control" id="career" name="career" required></textarea>
+        <label for="prior-knowledge">Did you have any prior knowledge of this course?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="prior-knowledge" id="yes" value="yes">
+            <label class="form-check-label" for="yes">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="prior-knowledge" id="no" value="no">
+            <label class="form-check-label" for="no">No</label>
+          </div>
+        </div>
       </div>
+
+      <div class="form-group">
+        <label for="how-heard">How did you hear about Techy Jaunt Launchpad?</label>
+        <div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="how-heard" id="instagram" value="Instagram">
+            <label class="form-check-label" for="instagram">Instagram</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="how-heard" id="facebook" value="Facebook">
+            <label class="form-check-label" for="social-media">Facebook</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="how-heard" id="whatsapp" value="WhatsApp TV">
+            <label class="form-check-label" for="whatsapp">WhatsApp TV</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="how-heard" id="friend" value="Friend">
+            <label class="form-check-label" for="friend">Through a friend</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="how-heard" id="fajomonie" value="Fajo Monie">
+            <label class="form-check-label" for="fajomonie">Through a Fajo Monie</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="how-heard" id="other" value="Others">
+            <label class="form-check-label" for="other">Others</label>
+          </div>
+        </div>
+      </div>
+
+
+
       <button id="hidden-button" style="display:none;" data-toggle="modal" data-target="#loading"></button>
 
       <button type="submit" class="btn btn-primary">Sign Up</button>
@@ -462,7 +504,8 @@
       document.getElementById("hidden-button").click();
 
       const course = document.querySelector('input[name="course"]:checked');
-      console.log(course)
+      const prior = document.querySelector('input[name="prior-knowledge"]')
+      const howHeard = document.querySelector('input[name="how-heard"]:checked')
 
       $("#loading").modal("show");
       const response = await fetch(`/launchpad/signup`, {
@@ -473,7 +516,8 @@
           firstName: firstName.value,
           lastName: lastName.value,
           courseOfStudy: course.value,
-          reasonForJoin: reason.value
+          priorKnowledge: prior.value,
+          howHeard: howHeard.value
         }),
         headers: {
           "Content-Type": "application/json",
