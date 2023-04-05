@@ -32,7 +32,7 @@ app.post("/launchpad/signup", async (req, res) => {
     });
   }
 
-  console.log("Attempting Sign Up User🧑...",{emailAddress, firstName, lastName,});
+  console.log("Attempting Sign Up User🧑...",{emailAddress, firstName, lastName, courseOfStudy, reasonForJoin});
 
   await fetch(`https://emailoctopus.com/api/1.6/lists/${launchpadListId}/contacts`, {
     method: "POST",
@@ -57,16 +57,22 @@ app.post("/launchpad/signup", async (req, res) => {
     .then((data) => {
       console.log(data);
       if (data.status === "SUBSCRIBED") {
+        console.log('Successfuly Subscribed', {emailAddress, firstName, lastName});
+
         return res.status(200).json({
           status: "ok",
         });
       }
       if (data.error.code === "MEMBER_EXISTS_WITH_EMAIL_ADDRESS") {
+        console.log('Member Already Signed Up', {emailAddress, firstName, lastName});
+
         return res.status(500).json({
           status: "failed",
         });
       }
       if (data.error.code === "INVALID_PARAMETERS"){
+        console.log('Invalid Parameters', {emailAddress, firstName, lastName, courseOfStudy, reasonForJoin});
+        
         return res.status(500).json({
           status: "failed",
         });
