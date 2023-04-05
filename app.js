@@ -32,6 +32,10 @@ app.post("/launchpad/signup", async (req, res) => {
     });
   }
 
+  function sanitizeText(text) {
+    return text.replace(/[\r\n]+/gm, ' ');
+  }
+
   console.log("Attempting Sign Up User🧑...",{emailAddress, firstName, lastName, courseOfStudy, reasonForJoin});
 
   await fetch(`https://emailoctopus.com/api/1.6/lists/${launchpadListId}/contacts`, {
@@ -47,7 +51,7 @@ app.post("/launchpad/signup", async (req, res) => {
         FirstName: firstName,
         LastName: lastName,
         SelectedCourse:courseOfStudy,
-        ReasonOfCareerInTech:reasonForJoin
+        ReasonOfCareerInTech: sanitizeText(reasonForJoin)
       },
       tags: ["STUDENT"],
       status: "SUBSCRIBED",
