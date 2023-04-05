@@ -116,6 +116,11 @@ app.post("/sub", async (req, res) => {
           status: "failed",
         });
       }
+      if (data.error.code === "INVALID_PARAMETERS"){
+        return res.status(304).json({
+          status: "failed",
+        });
+      }
     })
     .catch((err) => {
       console.log(err);
