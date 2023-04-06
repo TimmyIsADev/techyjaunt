@@ -68,7 +68,7 @@ app.post("/launchpad/signup", async (req, res) => {
         console.log('Member Already Signed Up', {emailAddress, firstName, lastName});
 
         return res.status(500).json({
-          status: "failed",
+          status: "alreadySignedUp",
         });
       }
       if (data.error.code === "INVALID_PARAMETERS"){
