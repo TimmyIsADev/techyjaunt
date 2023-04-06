@@ -325,6 +325,26 @@
     </div>
   </div>
 
+  <div class="modal" id="alreadySignedUp" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center text-error">Sign Up Failed</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>We're sorry😁, but you can only sign up once, Please check if you already got an email from us. In the meantime do make sure to click the link below</p>
+          <a href="https://chat.whatsapp.com/CILWY1aSiXi72LaluPijnS">Join Our WhatsApp Community</a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="close-processing" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="loading" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -425,8 +445,8 @@
         </li>
       </ul>
     </div>
+    alt="background-shape" />
     <img class="newsletter-bg-shape right-left-animation" src="images/background-shape/seo-ball-1.png"
-      alt="background-shape" />
   </section>
 
   <!-- footer -->
@@ -530,12 +550,16 @@
             $("#loading").modal("hide");
             $("#failed").modal("show");
           }
+          if(data.status === "alreadySignedUp"){
+            $("#loading").modal("hide");
+            $("#alreadySignedUp").modal("show")
+          }
           if (data.status === "ok") {
             $("#loading").modal("hide");
             $("#successful").modal("show");
             setTimeout(() => {
               window.location.href = "https://chat.whatsapp.com/CILWY1aSiXi72LaluPijnS";
-            }, 3000);
+            }, 2000);
             // window.alert('Thank you for subscribing! You will now receive updates and news from us.😁')
           }
         })
