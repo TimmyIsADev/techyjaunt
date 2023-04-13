@@ -1454,3 +1454,8 @@ section.contact {
   object-fit: scale-down;
   box-shadow:3px 3px #f5f5f5;
 }
+@media (max-width: 768px) {
+  .video_container {
+    margin-top: -10rem;
+  }
+}
