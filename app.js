@@ -16,6 +16,10 @@ app.get("/test", async (req, res) => {
   });
 });
 
+app.get("/health", async (req,res) =>{
+  res.status(200)
+})
+
 app.post("/launchpad/signup", async (req, res) => {
   const { emailAddress, firstName, lastName, courseOfStudy, priorKnowledge, howHeard } = req.body;
   let launchpadListId = "af8bb782-cd32-11ed-92c6-4745dc69f879";
