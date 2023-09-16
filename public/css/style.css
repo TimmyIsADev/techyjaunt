@@ -553,7 +553,6 @@ a:hover {
   position: absolute;
   left: 20%;
   bottom: -17%;
-  z-index: 1;
 }
 @media (max-width: 767px) {
   .hero-bg-7 {
@@ -564,7 +563,6 @@ a:hover {
   position: absolute;
   bottom: -30%;
   right: 50%;
-  z-index: 1;
 }
 @media (max-width: 767px) {
   .hero-bg-8 {
@@ -575,7 +573,6 @@ a:hover {
   position: absolute;
   right: 20%;
   bottom: -10%;
-  z-index: 1;
 }
 @media (max-width: 767px) {
   .hero-bg-9 {
@@ -1462,4 +1459,7 @@ section.contact {
 .form-check{
   display: flex;
   align-items: center;
+}
+.embed-responsive video{
+  z-index: 1000;
 }
