@@ -1459,3 +1459,7 @@ section.contact {
     margin-top: -10rem;
   }
 }
+.form-check{
+  display: flex;
+  align-items: center;
+}
