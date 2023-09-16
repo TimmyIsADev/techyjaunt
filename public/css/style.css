@@ -1460,6 +1460,3 @@ section.contact {
   display: flex;
   align-items: center;
 }
-.embed-responsive video{
-  z-index: 1000;
-}
